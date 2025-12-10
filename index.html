@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casey Siewiorek | Web Projects Portfolio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-alt: #0c0c11;
+      --card-bg: #14141f;
+      --accent: #e50914;
+      --accent-soft: #ff4455;
+      --text: #f5f5f5;
+      --muted: #a0a0b0;
+      --border: #26263a;
+      --shadow-soft: 0 24px 45px rgba(0,0,0,0.8);
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --transition-fast: 0.16s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(229,9,20,0.2), transparent 55%),
+        radial-gradient(circle at bottom, #000, #050509 60%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    /* HEADER */
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2.3rem;
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #ff9a9a, #e50914 55%, #6b0009 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 0 22px rgba(229,9,20,0.85);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.85rem;
+      line-height: 1.2;
+    }
+
+    .logo-text span:first-child {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .logo-text span:last-child {
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+    }
+
+    nav a {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      transition: var(--transition-fast);
+    }
+
+    nav a:hover {
+      color: var(--text);
+      border-color: rgba(229,9,20,0.7);
+      background: rgba(229,9,20,0.18);
+    }
+
+    /* HERO */
+
+    .hero {
+      background:
+        radial-gradient(circle at top left, rgba(229,9,20,0.4), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(229,9,20,0.18), #050509 80%);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      padding: 2.2rem 1.8rem;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+      gap: 2rem;
+      margin-bottom: 2.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.06), transparent 60%);
+      opacity: 0.5;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .hero-main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      font-weight: 800;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title span {
+      color: var(--accent-soft);
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 34rem;
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .tag {
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(10,10,16,0.95);
+      font-size: 0.74rem;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      box-shadow: 0 0 10px rgba(229,9,20,0.85);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.3rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--accent), var(--accent-soft));
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(229,9,20,0.7);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.07);
+      transform: translateY(-1px);
+      box-shadow: 0 18px 34px rgba(229,9,20,0.9);
+    }
+
+    .btn-ghost {
+      background: rgba(5,5,12,0.95);
+      color: var(--muted);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: rgba(229,9,20,0.8);
+      background: rgba(229,9,20,0.18);
+    }
+
+    .hero-side {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-card {
+      width: 100%;
+      max-width: 320px;
+      background: radial-gradient(circle at top, #1a0a10, #07070e 65%);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .stat-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      box-shadow: 0 0 7px rgba(229,9,20,0.9);
+    }
+
+    .stat-main {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .stat-main strong {
+      font-size: 1.9rem;
+      font-weight: 800;
+    }
+
+    .stat-main span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .stat-caption {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      font-size: 0.75rem;
+    }
+
+    .stat-item {
+      padding: 0.55rem 0.6rem;
+      border-radius: 0.9rem;
+      background: rgba(8,8,14,0.95);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .stat-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.68rem;
+      margin-bottom: 0.05rem;
+    }
+
+    .stat-value {
+      font-weight: 600;
+    }
+
+    /* SECTIONS */
+
+    section {
+      margin-bottom: 2.4rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* PROJECT CARDS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.3rem;
+    }
+
+    .project-card {
+      background: radial-gradient(circle at top left, rgba(229,9,20,0.24), rgba(10,10,16,0.95));
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 1.1rem 1rem 1rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      cursor: pointer;
+      min-height: 170px;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(229,9,20,0.9);
+      box-shadow: 0 18px 30px rgba(0,0,0,0.95);
+    }
+
+    .project-type {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .project-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1 1 auto;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .small-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .small-tag {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.78);
+      border: 1px solid rgba(255,255,255,0.13);
+      color: var(--muted);
+    }
+
+    .project-link {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .project-link span {
+      transform: translateY(1px);
+    }
+
+    /* DETAIL SECTIONS */
+
+    .detail {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 1.3rem 1.2rem 1.4rem;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.8);
+    }
+
+    .detail h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .detail p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.7rem;
+    }
+
+    .detail ul,
+    .detail ol {
+      padding-left: 1.2rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .detail li + li {
+      margin-top: 0.2rem;
+    }
+
+    .detail small {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-soft);
+      margin-bottom: 0.35rem;
+    }
+
+    /* ABOUT + CONTACT */
+
+    .about-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 52rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .contact-list a {
+      color: var(--accent-soft);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+      padding-top: 1rem;
+      font-size: 0.76rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-side {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+      }
+      .hero {
+        padding: 1.7rem 1.3rem;
+      }
+      .page {
+        padding-inline: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo-mark">
+        <div class="logo-circle">CS</div>
+        <div class="logo-text">
+          <span>Portfolio</span>
+          <span>Casey&nbsp;Siewiorek</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#details">Details</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-main">
+          <p class="hero-kicker">Student • HTML &amp; CSS • Web Projects</p>
+          <h1 class="hero-title">
+            A red &amp; black <span>web portfolio</span> of my class projects.
+          </h1>
+          <p class="hero-subtitle">
+            I’m learning web development by building real mini-sites: travel pages, movie lists,
+            a cooking blog, and tech articles. This page pulls them all together in one clean place.
+          </p>
+
+          <div class="hero-tags">
+            <div class="tag">
+              <span class="tag-dot"></span>
+              HTML5 &amp; CSS3
+            </div>
+            <div class="tag">
+              <span class="tag-dot"></span>
+              Beginner Front-End
+            </div>
+            <div class="tag">
+              <span class="tag-dot"></span>
+              Course Projects
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              View Projects <span>↘</span>
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              Contact Me
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="stat-card">
+            <div class="stat-pill">
+              <span class="stat-pill-dot"></span>
+              Built &amp; hosted with GitHub Pages
+            </div>
+            <div class="stat-main">
+              <strong>5+</strong>
+              <span>HTML Projects</span>
+            </div>
+            <p class="stat-caption">
+              Travel, media, blog, and tech layouts built from scratch as part of my coursework.
+            </p>
+            <div class="stat-grid">
+              <div class="stat-item">
+                <span class="stat-label">Strength</span>
+                <span class="stat-value">Clean structure</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Focus</span>
+                <span class="stat-value">Learning by doing</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Theme</span>
+                <span class="stat-value">Red / Black</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Next step</span>
+                <span class="stat-value">More interactivity</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- PROJECT OVERVIEW CARDS -->
+      <section id="projects">
+        <div class="section-header">
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">
+            Click a card to jump to that project’s details below.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <a class="project-card" href="#japan-trip">
+            <div class="project-type">Travel Page</div>
+            <h3 class="project-title">My Dream Trip to Japan</h3>
+            <p class="project-desc">
+              A semantic HTML travel page highlighting cities like Tokyo and Kyoto, must-try foods,
+              steps to prepare, and a mini travel glossary.
+            </p>
+            <div class="project-meta">
+              <div class="small-tags">
+                <span class="small-tag">Semantic HTML</span>
+                <span class="small-tag">Lists &amp; Links</span>
+              </div>
+              <span class="project-link">View details <span>↗</span></span>
+            </div>
+          </a>
+
+          <a class="project-card" href="#watch-list">
+            <div class="project-type">HTML Basics</div>
+            <h3 class="project-title">Must-Watch Movies &amp; Series</h3>
+            <p class="project-desc">
+              A simple list-based page sharing my top three must-watch picks and why they matter to me.
+            </p>
+            <div class="project-meta">
+              <div class="small-tags">
+                <span class="small-tag">Headings</span>
+                <span class="small-tag">Paragraphs</span>
+              </div>
+              <span class="project-link">View details <span>↗</span></span>
+            </div>
+          </a>
+
+          <a class="project-card" href="#fried-chicken-blog">
+            <div class="project-type">Blog Layout</div>
+            <h3 class="project-title">Cooking Blog: My Love for Fried Chicken</h3>
+            <p class="project-desc">
+              A single-page blog with article structure, an image, callouts, and personal storytelling about comfort food.
+            </p>
+            <div class="project-meta">
+              <div class="small-tags">
+                <span class="small-tag">Article</span>
+                <span class="small-tag">Image &amp; Aside</span>
+              </div>
+              <span class="project-link">View details <span>↗</span></span>
+            </div>
+          </a>
+
+          <a class="project-card" href="#css-tech-assignment">
+            <div class="project-type">CSS Styling</div>
+            <h3 class="project-title">Tech Insights – CSS Assignment</h3>
+            <p class="project-desc">
+              A styled page experimenting with cards, a responsive layout, tables, and typography for a “Tech Insights” theme.
+            </p>
+            <div class="project-meta">
+              <div class="small-tags">
+                <span class="small-tag">CSS Layout</span>
+                <span class="small-tag">Tables</span>
+              </div>
+              <span class="project-link">View details <span>↗</span></span>
+            </div>
+          </a>
+
+          <a class="project-card" href="#tech-site">
+            <div class="project-type">Multi-Page Site</div>
+            <h3 class="project-title">Tech Insights – Multi-Page Site</h3>
+            <p class="project-desc">
+              A small site with a homepage, comparison page, and contact page, plus images and navigation for a tech-news brand.
+            </p>
+            <div class="project-meta">
+              <div class="small-tags">
+                <span class="small-tag">Multi-Page</span>
+                <span class="small-tag">Nav &amp; Images</span>
+              </div>
+              <span class="project-link">View details <span>↗</span></span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- PROJECT DETAILS -->
+      <section id="details">
+        <div class="section-header">
+          <h2 class="section-title">Project Details</h2>
+          <p class="section-subtitle">
+            Short write-ups showing what each project includes and what I practiced.
+          </p>
+        </div>
+
+        <!-- Dream Trip to Japan -->
+        <article id="japan-trip" class="detail">
+          <span class="badge">Travel Page • HTML</span>
+          <h3>My Dream Trip to Japan</h3>
+          <p>
+            This page is built as a simple travel guide for my dream trip to Japan.
+            It uses semantic HTML structure with a header, navigation, sections, lists, and a mini glossary.
+          </p>
+          <p>Highlights include:</p>
+          <ul>
+            <li>
+              A header and navigation bar with links to the food section, an “About this trip” page,
+              and the official Japan travel website.
+            </li>
+            <li>
+              A section describing why I want to visit Japan and what excites me most about the culture.
+            </li>
+            <li>
+              A list of must-visit destinations, like Tokyo and Kyoto, with short explanations of what I’d do there.
+            </li>
+            <li>
+              A “Japanese Food” list that calls out dishes like sushi (with rolls such as salmon nigiri and dragon roll),
+              ramen, takoyaki, and okonomiyaki.
+            </li>
+            <li>
+              An ordered list of steps to prepare for the trip: saving money, getting a passport,
+              booking flights and hotels, learning phrases, and packing.
+            </li>
+            <li>
+              A small “travel glossary” explaining terms such as <em>Shinkansen</em> and other travel-related words.
+            </li>
+          </ul>
+          <small>What I practiced: semantic tags, navigation, external links, ordered and unordered lists, and basic page structure.</small>
+        </article>
+
+        <!-- Must Watch List -->
+        <article id="watch-list" class="detail" style="margin-top:1.5rem;">
+          <span class="badge">Lists • Content</span>
+          <h3>Must-Watch Movies &amp; Series</h3>
+          <p>
+            This project is a small but focused HTML page that lists my top three movies or series
+            everyone should watch at least once.
+          </p>
+          <p>My list includes:</p>
+          <ul>
+            <li>
+              <strong>The Godfather</strong> – a masterpiece of cinema with deep storytelling, strong character
+              development, and themes of power, loyalty, and family.
+            </li>
+            <li>
+              <strong>Pulp Fiction</strong> – famous for its out-of-order story, memorable characters, sharp dialogue,
+              and the way it mixes humor with violence.
+            </li>
+            <li>
+              <strong>Game of Thrones</strong> – a series known for its complex characters and constantly evolving storyline that keeps you wanting more.
+            </li>
+          </ul>
+          <small>What I practiced: basic HTML structure, headings, paragraphs, and simple content layout.</small>
+        </article>
+
+        <!-- Fried Chicken Blog -->
+        <article id="fried-chicken-blog" class="detail" style="margin-top:1.5rem;">
+          <span class="badge">Blog • Article Layout</span>
+          <h3>Cooking Blog: My Love for Fried Chicken</h3>
+          <p>
+            This page is a mini cooking blog built around one of my favorite comfort foods: fried chicken.
+            It uses a blog-style layout with a header, navigation, main article, image, quote, and an aside.
+          </p>
+          <p>Key elements:</p>
+          <ul>
+            <li>
+              A header and simple navigation bar to show how a blog’s top area can look.
+            </li>
+            <li>
+              An article section with a title like <em>“The Art of Perfect Fried Chicken”</em> and a date/author line.
+            </li>
+            <li>
+              An image of golden, crispy fried chicken to add visual appeal to the page.
+            </li>
+            <li>
+              Sections that talk about why fried chicken matters to me, how it connects to family and comfort,
+              and how I like to season and cook it.
+            </li>
+            <li>
+              A highlighted <code>&lt;aside&gt;</code> block for a tip or note, and a <code>&lt;blockquote&gt;</code> to call out a quote in the content.
+            </li>
+          </ul>
+          <small>What I practiced: article semantics, combining text with images, and using aside/blockquote for richer content.</small>
+        </article>
+
+        <!-- CSS Tech Assignment -->
+        <article id="css-tech-assignment" class="detail" style="margin-top:1.5rem;">
+          <span class="badge">CSS • Styling &amp; Layout</span>
+          <h3>Tech Insights – CSS Styling Assignment</h3>
+          <p>
+            This assignment focuses on styling a tech-themed page. The layout uses a central content column
+            with images, cards, and a comparison table to make the information easier to scan.
+          </p>
+          <p>Key features:</p>
+          <ul>
+            <li>
+              A set of “article cards” with images and text that highlight different tech topics, such as smartphone trends.
+            </li>
+            <li>
+              A responsive grid for the cards so they rearrange nicely on smaller screens.
+            </li>
+            <li>
+              A comparison table that lines up features and prices, practicing borders, header rows, and a footer row.
+            </li>
+            <li>
+              Simple, readable system fonts and spacing for better typography.
+            </li>
+          </ul>
+          <small>What I practiced: external CSS, card design, responsive grid layout, and table styling.</small>
+        </article>
+
+        <!-- Tech Insights Multi-Page Site -->
+        <article id="tech-site" class="detail" style="margin-top:1.5rem;">
+          <span class="badge">Multi-Page • Navigation</span>
+          <h3>Tech Insights – Multi-Page Website</h3>
+          <p>
+            This project expands the Tech Insights idea into a small website with multiple pages.
+            It includes a homepage, comparison page, and contact page, plus images and navigation links.
+          </p>
+          <p>Highlights:</p>
+          <ul>
+            <li>
+              A homepage that introduces the “Tech Insights” brand with a logo, hero content, and links to articles.
+            </li>
+            <li>
+              A comparison page that uses images and a table to compare different smartphones and their key specs.
+            </li>
+            <li>
+              A contact page that shows basic contact info and reinforces the site’s structure.
+            </li>
+            <li>
+              A shared navigation menu across the pages so users can move around the site.
+            </li>
+          </ul>
+          <small>What I practiced: connecting multiple pages together, building navigation, and organizing assets (HTML + images) into a site.</small>
+        </article>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="section-header" style="margin-top:1.8rem;">
+          <h2 class="section-title">About Me</h2>
+        </div>
+        <p class="about-text">
+          I’m <strong>Casey Siewiorek</strong>, a business and marketing student learning front-end web
+          development through hands-on projects. Everything on this page started as class assignments:
+          small HTML and CSS files that I turned into working pages. My goal is to keep improving my
+          structure, styling, and eventually add more JavaScript to make things interactive.
+        </p>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-header" style="margin-top:1.8rem;">
+          <h2 class="section-title">Contact</h2>
+        </div>
+        <ul class="contact-list">
+          <li>Email: <a href="mailto:siewiorekcasey@gmail.com">siewiorekcasey@gmail.com</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      &copy; <span id="year"></span> Casey Siewiorek. Built with HTML &amp; CSS. Hosted on GitHub Pages.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
